@@ -27,7 +27,13 @@ export default {
   },
 
   methods: {
-    ...mapActions(["toggleDarkMode"]),
+    ...mapActions(["toggleDarkMode", "fetchFilteredCountries"]),
+    filterCountries() {
+      this.fetchFilteredCountries({
+        searchTerm: this.searchTerm,
+        selectedRegion: this.selectedRegion,
+      });
+    },
   },
   mounted() {
     this.toggleDarkMode();
@@ -44,6 +50,7 @@ export default {
           :class="['w-full px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500', {'dark:bg-darkMain': darkMode }]"
           placeholder="Search..."
           v-model="searchTerm"
+          @input="filterCountries"
         />
       </div>
       <div class="w-1/2 flex items-center justify-end">
@@ -51,8 +58,10 @@ export default {
           class="px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500"
           :class="['px-4 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-blue-500', {'dark:bg-darkMain': darkMode }]"
           v-model="selectedRegion"
+          @change="filterCountries"
           placeholder="Filter by Region"
         >
+          <option value="">All</option>
           <option value="Africa">Africa</option>
           <option value="Americas">Americas</option>
           <option value="Asia">Asia</option>

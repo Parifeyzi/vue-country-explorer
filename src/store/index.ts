@@ -23,6 +23,24 @@ export default createStore({
         console.error(error);
       }
     },
+    async fetchFilteredCountries({ commit }, { searchTerm, selectedRegion }) {
+      try {
+        let url = 'https://restcountries.com/v3.1/all?fields=name,flags,capital,region,population';
+
+        if (selectedRegion) {
+          url = `https://restcountries.com/v3.1/region/${selectedRegion.toLowerCase()}?fields=name,flags,capital,region,population`;
+        }
+
+        if (searchTerm) {
+          url = `https://restcountries.com/v3.1/name/${searchTerm.toLowerCase()}?fields=name,flags,capital,region,population`;
+        }
+
+        const response = await axios.get(url);
+        commit('SET_COUNTRIES', response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    },
     toggleDarkMode({ commit }) {
       commit('TOGGLE_DARK_MODE');
     },
