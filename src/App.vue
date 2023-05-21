@@ -1,22 +1,18 @@
 <template>
+  <div>
     <Header />
-    <FilterCountries />
-    <CountryList />
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
-import Header from './components/Header.vue';
-import FilterCountries from './views/FilterCountries.vue';
-import CountryList from './views/CountryList.vue';
+import Header from "./components/Header.vue";
 
 export default {
   components: {
     Header,
-    FilterCountries,
-    CountryList,
   },
 };
 </script>
-
 <style>
 </style>

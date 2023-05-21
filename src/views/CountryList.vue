@@ -2,6 +2,7 @@
 import { mapActions, mapState } from "vuex";
 import { ref } from "vue";
 import { useStore } from "vuex";
+import FilterCountries from "../views/FilterCountries.vue"
 
 export default {
   setup() {
@@ -19,6 +20,9 @@ export default {
       darkMode,
     };
   },
+  components: {
+    FilterCountries,
+  },
   computed: {
     ...mapState(["countries"]),
   },
@@ -33,6 +37,7 @@ export default {
 </script>
 
 <template>
+  <FilterCountries />
   <div :class="['container-wrapper', { 'dark:bg-darkMain': darkMode }]">
     <div class="container mx-auto">
       <div
@@ -44,18 +49,20 @@ export default {
           class="country-items-wrapper"
         >
           <div :class="['country-items', { 'dark:country-items': darkMode }]">
-            <img :src="country.flags.png" :alt="country.flags.alt" />
-            <div class="country-name">{{ country.name.common }}</div>
-            <div class="countries-list-detail">
-              <div class="countries-list-detail-title">Population:</div>
-              {{ country.population }}
-              <br />
-              <div class="countries-list-detail-title">Region:</div>
-              {{ country.region }}
-              <br />
-              <div class="countries-list-detail-title">Capital:</div>
-              {{ country.capital[0] }}
-            </div>
+            <router-link :to="`/country/${country.name.common}`">
+              <img :src="country.flags.png" :alt="country.flags.alt" />
+              <div class="country-name">{{ country.name.common }}</div>
+              <div class="countries-list-detail">
+                <div class="countries-list-detail-title">Population:</div>
+                {{ country.population }}
+                <br />
+                <div class="countries-list-detail-title">Region:</div>
+                {{ country.region }}
+                <br />
+                <div class="countries-list-detail-title">Capital:</div>
+                {{ country.capital[0] }}
+              </div>
+            </router-link>
           </div>
         </div>
       </div>
@@ -65,12 +72,12 @@ export default {
 
 <style>
 .dark\:bg-darkMain {
-  background-color: #202D36;
+  background-color: #202d36;
   color: white;
 }
 
 .dark\:country-items {
-  background-color: #2B3743 !important;
+  background-color: #2b3743 !important;
   color: white !important;
   box-shadow: #2f2f2f 0px 0px 5px 1px !important;
 }
@@ -84,8 +91,9 @@ export default {
   height: 400px;
 }
 
-.country-items > img {
+.country-items > a > img {
   height: 180px;
+  width: 100%;
   border-radius: 8px 8px 0 0;
 }
 
