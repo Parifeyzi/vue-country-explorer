@@ -43,7 +43,7 @@ export default {
 }
 
 .dark\:bg-darkHeader {
-  background-color: #333333;
+  background-color: #2B3743;
   color: #ffffff;
 }
 

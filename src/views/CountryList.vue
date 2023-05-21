@@ -43,7 +43,7 @@ export default {
           :key="country.alpha3Code"
           class="country-items-wrapper"
         >
-          <div class="country-items">
+          <div :class="['country-items', { 'dark:country-items': darkMode }]">
             <img :src="country.flags.png" :alt="country.flags.alt" />
             <div class="country-name">{{ country.name.common }}</div>
             <div class="countries-list-detail">
@@ -65,8 +65,14 @@ export default {
 
 <style>
 .dark\:bg-darkMain {
-  background-color: #333333;
+  background-color: #202D36;
   color: white;
+}
+
+.dark\:country-items {
+  background-color: #2B3743 !important;
+  color: white !important;
+  box-shadow: #2f2f2f 0px 0px 5px 1px !important;
 }
 
 .country-items {
@@ -78,7 +84,7 @@ export default {
   height: 400px;
 }
 
-.country-items >img{
+.country-items > img {
   height: 180px;
   border-radius: 8px 8px 0 0;
 }
@@ -113,7 +119,7 @@ export default {
   .grid-cols-1 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
-  .custom-gap{
+  .custom-gap {
     gap: 3.5rem;
   }
 }
