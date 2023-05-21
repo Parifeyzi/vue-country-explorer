@@ -5,7 +5,6 @@ export default createStore({
   state: {
     countries: [],
     darkMode: false,
-
   },
   mutations: {
     SET_COUNTRIES(state, countries) {
@@ -23,6 +22,9 @@ export default createStore({
       } catch (error) {
         console.error(error);
       }
+    },
+    toggleDarkMode({ commit }) {
+      commit('TOGGLE_DARK_MODE');
     },
   },
   getters: {
