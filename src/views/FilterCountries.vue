@@ -89,7 +89,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .dark\:bg-darkMain {
   background-color: #202d36;
   color: white;
@@ -121,7 +121,7 @@ export default {
 
 @media (max-width: 640px) {
   .container-wrapper {
-    padding: 0 50px !important;
+    padding: 0 20px !important;
   }
 
   .w-full {

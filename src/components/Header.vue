@@ -1,7 +1,11 @@
 <template>
-  <header :class="['header container-wrapper', {'dark:bg-darkHeader': darkMode }]">
+  <header
+    :class="['header container-wrapper', { 'dark:bg-darkHeader': darkMode }]"
+  >
     <div class="container mx-auto flex items-center justify-between p-4">
-      <h1 class="text-sm sm:text-lg md:text-lg lg:text-lg font-bold">Where in the world?</h1>
+      <h1 class="text-sm sm:text-lg md:text-lg lg:text-lg font-bold">
+        Where in the world?
+      </h1>
       <button class="px-4 py-2 rounded-md" @click="toggleDarkMode">
         <span v-if="darkMode">Light Mode</span>
         <span v-else>Dark Mode</span>
@@ -19,9 +23,12 @@ export default {
     const darkMode = ref(false);
     const store = useStore();
 
-    store.watch(() => store.getters.darkMode, (value) => {
-      darkMode.value = value;
-    });
+    store.watch(
+      () => store.getters.darkMode,
+      (value) => {
+        darkMode.value = value;
+      }
+    );
 
     const toggleDarkMode = () => {
       darkMode.value = !darkMode.value;
@@ -43,7 +50,7 @@ export default {
 }
 
 .dark\:bg-darkHeader {
-  background-color: #2B3743;
+  background-color: #2b3743;
   color: #ffffff;
 }
 
@@ -71,7 +78,7 @@ export default {
 }
 
 .p-4 {
-  padding: 1rem;
+  padding: 1rem 0;
 }
 
 .px-4 {
@@ -90,7 +97,7 @@ export default {
 
 @media (max-width: 640px) {
   .container-wrapper {
-    padding: 0 15px !important;
+    padding: 0 20px !important;
   }
 }
 

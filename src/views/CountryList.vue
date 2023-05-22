@@ -76,7 +76,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .dark\:bg-darkMain {
   background-color: #202d36;
   color: white;
