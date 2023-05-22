@@ -49,9 +49,9 @@ async function fetchCountryDetails(countryName) {
 </script>
 
 <template>
-  <div :class="['container-wrapper', { 'dark:bg-darkMain': darkMode }]">
+  <div :class="['container-wrapper h-100-vh', { 'dark:bg-darkMain': darkMode }]">
     <div class="container mx-auto">
-      <router-link to="/" class="btn-back my-10">Back</router-link>
+      <router-link to="/" :class="['btn-back my-10', {'dark:btn-back-dark': darkMode}]">Back</router-link>
       <div v-if="country">
         <div>
           <div class="flex">
@@ -136,6 +136,12 @@ async function fetchCountryDetails(countryName) {
 </template>
 
 <style>
+.dark\:btn-back-dark{
+  background-color: #2B3743 !important;
+  color: white !important;
+  box-shadow: #2f2f2f 0px 0px 5px 1px !important;
+}
+
 .btn-back {
   padding: 0.4rem 3rem;
   background-color: white;
@@ -162,5 +168,9 @@ async function fetchCountryDetails(countryName) {
   border-radius: 3px;
   font-size: 12px;
   margin: 5px;
+}
+
+.h-100-vh{
+  height: 100vh;
 }
 </style>
