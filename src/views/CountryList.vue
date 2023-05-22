@@ -2,7 +2,7 @@
 import { mapActions, mapState } from "vuex";
 import { ref } from "vue";
 import { useStore } from "vuex";
-import FilterCountries from "../views/FilterCountries.vue"
+import FilterCountries from "../views/FilterCountries.vue";
 
 export default {
   setup() {
@@ -109,6 +109,12 @@ export default {
 .countries-list-detail-title {
   font-weight: bold;
   margin-bottom: 0.2rem;
+}
+
+@media (max-width: 640px) {
+  .container-wrapper {
+    padding: 0 50px !important;
+  }
 }
 
 @media (min-width: 640px) {

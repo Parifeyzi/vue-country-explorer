@@ -1,7 +1,7 @@
 <template>
   <header :class="['header container-wrapper', {'dark:bg-darkHeader': darkMode }]">
     <div class="container mx-auto flex items-center justify-between p-4">
-      <h1 class="text-lg font-bold">Where in the world?</h1>
+      <h1 class="text-sm sm:text-lg md:text-lg lg:text-lg font-bold">Where in the world?</h1>
       <button class="px-4 py-2 rounded-md" @click="toggleDarkMode">
         <span v-if="darkMode">Light Mode</span>
         <span v-else>Dark Mode</span>
@@ -36,7 +36,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .header {
   background-color: #ffffff;
   color: #000000;
@@ -86,6 +86,12 @@ export default {
 
 .rounded-md {
   border-radius: 0.375rem;
+}
+
+@media (max-width: 640px) {
+  .container-wrapper {
+    padding: 0 15px !important;
+  }
 }
 
 @media (min-width: 640px) {

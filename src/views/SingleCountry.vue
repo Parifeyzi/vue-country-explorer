@@ -49,78 +49,80 @@ async function fetchCountryDetails(countryName) {
 </script>
 
 <template>
-  <div :class="['container-wrapper h-100-vh', { 'dark:bg-darkMain': darkMode }]">
+<div :class="['container-wrapper', 'h-screen', { 'dark:bg-darkMain': darkMode }]">
     <div class="container mx-auto">
-      <router-link to="/" :class="['btn-back my-10', {'dark:btn-back-dark': darkMode}]">Back</router-link>
+      <router-link
+        to="/"
+        :class="['btn-back my-10', { 'dark:btn-back-dark': darkMode }]"
+        >Back</router-link
+      >
       <div v-if="country">
-        <div>
-          <div class="flex">
-            <div class="w-1/2 pt-5 pb-5 pr-5">
-              <img
-                class="country-img"
-                :src="country.flags.png"
-                :alt="country.flags.alt"
-              />
-            </div>
-            <div class="w-1/2 mt-10">
-              <h2 class="text-xl font-bold mb-4">{{ country.name.common }}</h2>
-              <div class="flex">
-                <div class="w-1/2">
-                  <div class="mb-2">
-                    <span class="font-semibold">Native Name:</span>
-                    <div class="font-gray ml-2">
-                      {{ Object.values(country.name.nativeName)[0].common }}
-                    </div>
-                  </div>
-                  <div class="mb-2">
-                    <span class="font-semibold">Population:</span>
-                    <div class="font-gray ml-2">{{ country.population }}</div>
-                  </div>
-                  <div class="mb-2">
-                    <span class="font-semibold">Region:</span>
-                    <div class="font-gray ml-2">{{ country.region }}</div>
-                  </div>
-                  <div class="mb-2">
-                    <span class="font-semibold">Sub Region:</span>
-                    <div class="font-gray ml-2">{{ country.subregion }}</div>
-                  </div>
-                  <div class="mb-2">
-                    <span class="font-semibold">Capital:</span>
-                    <div class="font-gray ml-2">{{ country.capital[0] }}</div>
+        <div class="flex flex-col md:flex-row">
+          <div class="md:w-1/2 pt-5 pb-5 pr-5">
+            <img
+              class="country-img"
+              :src="country.flags.png"
+              :alt="country.flags.alt"
+            />
+          </div>
+          <div class="md:w-1/2 mt-10">
+            <h2 class="text-xl font-bold mb-4">{{ country.name.common }}</h2>
+            <div class="flex flex-col md:flex-row">
+              <div class="w-full md:w-1/2 mb-4 md:mb-0">
+                <div class="mb-2">
+                  <span class="font-semibold">Native Name:</span>
+                  <div class="font-gray ml-2">
+                    {{ Object.values(country.name.nativeName)[0].common }}
                   </div>
                 </div>
-                <div class="w-1/2">
-                  <div class="mb-2">
-                    <span class="font-semibold">Top Level Domain:</span>
-                    <div class="font-gray ml-2">{{ country.tld[0] }}</div>
+                <div class="mb-2">
+                  <span class="font-semibold">Population:</span>
+                  <div class="font-gray ml-2">{{ country.population }}</div>
+                </div>
+                <div class="mb-2">
+                  <span class="font-semibold">Region:</span>
+                  <div class="font-gray ml-2">{{ country.region }}</div>
+                </div>
+                <div class="mb-2">
+                  <span class="font-semibold">Sub Region:</span>
+                  <div class="font-gray ml-2">{{ country.subregion }}</div>
+                </div>
+                <div class="mb-2">
+                  <span class="font-semibold">Capital:</span>
+                  <div class="font-gray ml-2">{{ country.capital[0] }}</div>
+                </div>
+              </div>
+              <div class="w-full md:w-1/2">
+                <div class="mb-2">
+                  <span class="font-semibold">Top Level Domain:</span>
+                  <div class="font-gray ml-2">{{ country.tld[0] }}</div>
+                </div>
+                <div class="mb-2">
+                  <span class="font-semibold">Countries:</span>
+                  <div class="font-gray ml-2">
+                    {{ Object.values(country.currencies)[0].name }}
                   </div>
-                  <div class="mb-2">
-                    <span class="font-semibold">Countries:</span>
-                    <div class="font-gray ml-2">
-                      {{ Object.values(country.currencies)[0].name }}
-                    </div>
-                  </div>
-                  <div class="mb-2">
-                    <span class="font-semibold">Languages:</span>
-                    <div
-                      class="font-gray ml-2"
-                      v-for="langs in country.languages"
-                      :key="langs"
-                    >
-                      {{ langs }},
-                    </div>
+                </div>
+                <div class="mb-2">
+                  <span class="font-semibold">Languages:</span>
+                  <div
+                    class="font-gray ml-2"
+                    v-for="langs in country.languages"
+                    :key="langs"
+                  >
+                    {{ langs }},
                   </div>
                 </div>
               </div>
-              <div class="mt-5">
-                <span class="font-semibold">Borders Countries:</span>
-                <div
-                  v-for="borderCountry in country.borders"
-                  :key="borderCountry"
-                  class="font-gray ml-2 border-ctr"
-                >
-                  {{ borderCountry }}
-                </div>
+            </div>
+            <div class="mt-5">
+              <span class="font-semibold">Borders Countries:</span>
+              <div
+                v-for="borderCountry in country.borders"
+                :key="borderCountry"
+                class="font-gray ml-2 border-ctr"
+              >
+                {{ borderCountry }}
               </div>
             </div>
           </div>
@@ -136,8 +138,8 @@ async function fetchCountryDetails(countryName) {
 </template>
 
 <style>
-.dark\:btn-back-dark{
-  background-color: #2B3743 !important;
+.dark\:btn-back-dark {
+  background-color: #2b3743 !important;
   color: white !important;
   box-shadow: #2f2f2f 0px 0px 5px 1px !important;
 }
@@ -170,7 +172,19 @@ async function fetchCountryDetails(countryName) {
   margin: 5px;
 }
 
-.h-100-vh{
-  height: 100vh;
+@media (max-width: 767px) {
+  .country-img {
+    width: 100%;
+    height: 250px;
+  }
+
+  .btn-back {
+    width: fit-content;
+    margin: 40px auto;
+  }
+
+  .flex-col.md\:flex-row {
+    flex-direction: column;
+  }
 }
 </style>
