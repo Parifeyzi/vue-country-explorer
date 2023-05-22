@@ -22,11 +22,18 @@ export default {
       const countryName = route.params.countryName;
       const response = await fetchCountryDetails(countryName);
       country.value = response[0];
+      toggleDarkMode();
     });
+
+    const toggleDarkMode = () => {
+      darkMode.value = !darkMode.value;
+      store.commit("TOGGLE_DARK_MODE", darkMode.value);
+    };
 
     return {
       country,
       darkMode,
+      toggleDarkMode,
     };
   },
 

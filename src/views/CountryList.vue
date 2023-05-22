@@ -1,18 +1,31 @@
 <script>
-import { mapActions, mapState } from "vuex";
-import { ref } from "vue";
+import { mapState, mapActions } from "vuex";
+import { ref, onMounted } from "vue";
 import { useStore } from "vuex";
 import FilterCountries from "../views/FilterCountries.vue";
 
 export default {
+  components: {
+    FilterCountries,
+  },
   setup() {
     const darkMode = ref(false);
     const store = useStore();
 
+    const toggleDarkMode = (value) => {
+      darkMode.value = value;
+    };
+
+    onMounted(async () => {
+      await store.dispatch("fetchCountries");
+      toggleDarkMode(store.getters.darkMode);
+      store.dispatch("toggleDarkMode");
+    });
+
     store.watch(
       () => store.getters.darkMode,
       (value) => {
-        darkMode.value = value;
+        toggleDarkMode(value);
       }
     );
 
@@ -20,18 +33,11 @@ export default {
       darkMode,
     };
   },
-  components: {
-    FilterCountries,
-  },
   computed: {
     ...mapState(["countries"]),
   },
   methods: {
-    ...mapActions(["fetchCountries", "toggleDarkMode"]),
-  },
-  mounted() {
-    this.fetchCountries();
-    this.toggleDarkMode();
+    ...mapActions(["fetchCountries"]),
   },
 };
 </script>
