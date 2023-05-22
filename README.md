@@ -4,6 +4,12 @@ Explore countries, their names, populations, and flags. Delve into global divers
 ```
 git clone https://github.com/your-username/vue-country-explorer.git
 ```
+```
 cd vue-country-explorer
+```
+```
 npm install
+```
+```
 npm run dev
+```
