@@ -145,6 +145,11 @@ async function fetchCountryDetails(countryName) {
 </template>
 
 <style>
+.dark\:bg-darkMain {
+  background-color: #202d36;
+  color: white;
+}
+
 .dark\:btn-back-dark {
   background-color: #2b3743 !important;
   color: white !important;

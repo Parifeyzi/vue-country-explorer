@@ -44,7 +44,7 @@ export default {
 
 <template>
   <FilterCountries />
-  <div :class="['container-wrapper', { 'dark:bg-darkMain': darkMode }]">
+  <div :class="['container-wrapper', 'h-screen', { 'dark:bg-darkMain': darkMode }]">
     <div class="container mx-auto">
       <div
         class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 custom-gap"
